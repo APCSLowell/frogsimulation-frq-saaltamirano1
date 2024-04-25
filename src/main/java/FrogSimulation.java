@@ -1,44 +1,43 @@
 public class FrogSimulation
 {
 	private int goalDistance;
-	private int maxHops;
-	
-	public FrogSimulation(int dist, int numHops)
-	{
-		goalDistance = dist;
-		maxHops = numHops;
-		maxHopsHolder = numHops;  //ignore this, it's used for testing
-	}
-	
-	//private int hopDistance() 
-	//implementation is below, but not important
-	
-	public boolean simulate()
-	{ 
-		int hops = 0;
-		int pos = 0;
-		while(hops < maxHops){
-			hops+= 1;
-		if(pos >= dist){
-			return true;
-		}
-			return false;
-		}
-	}
-	
-	public double runSimulations(int num)
-	{ 
-		int aNum = 0; 
-		int count = 0; 
-		boolean sim = false;
-		while(aNum <= num){
-			sim = simulate();
-			aNum++;
-		if(sim == true){
-			count++;
-		}
-		}
-		return (double) count/num;
+private int maxHops;
+
+public FrogSimulation(int dist, int numHops)
+{
+goalDistance = dist;
+maxHops = numHops;
+maxHopsHolder = numHops;  //ignore this, it's used for testing
+}
+
+//private int hopDistance()
+//implementation is below, but not important
+
+public boolean simulate()
+{
+int distance = 0;
+int hops = 0;
+while (hops < maxHops){
+distance = distance + hopDistance();
+        hops++;
+if(distance < 0){
+return false;
+}else if(distance >= goalDistance){
+return true;
+}
+}
+return false;
+}
+
+public double runSimulations(int num)
+{
+double successes = 0;
+for (int i = 0; i < num; i++){
+if (simulate() == true){
+successes++;
+}
+}
+return successes/num;
 	}
 	
 	
